@@ -24,7 +24,11 @@ CWorld::CWorld(CGame* InGame)
 		throw (exception("Invalid Game pointer!"));
 }
 
-CWorld::~CWorld() {}
+CWorld::~CWorld() 
+{
+ for (auto Entity : Entities)
+  delete Entity.second;
+}
 
 // Initializes the world
 void CWorld::WorldInitCall()
