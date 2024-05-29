@@ -54,6 +54,8 @@ public:
 	float Top();
 	float Bottom();
 	
+	// Snake
+	CSnakeHead* GetSnake();
 };
 
 

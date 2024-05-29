@@ -1,5 +1,6 @@
 #include "CWall.h"
 #include "CSnakeWorld.h"
+#include "CSnake.h"
 
 CWall::CWall(CWorld* World, std::string Name): CObject(World, Name) 
 {
@@ -20,7 +21,6 @@ void CWall::OnCollided(CCollider* OtherCollider, CCollider* Collider)
 	{
 		CSnakeWorld* SnakeWorldCast = dynamic_cast<CSnakeWorld*>(GetWorld());
 		if (SnakeWorldCast)
-			SnakeWorldCast->GameOver();
+			SnakeWorldCast->GetSnake()->GameOver();
 	}
-
 }

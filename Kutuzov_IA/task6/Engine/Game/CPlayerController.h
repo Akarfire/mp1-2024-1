@@ -15,7 +15,7 @@ class CPlayerController
 
 public:
 	CPlayerController(CGame* InGame);
-	~CPlayerController();
+	virtual ~CPlayerController();
 
 	// IsReceibingInput interface
 	bool GetIsReceivingInput();

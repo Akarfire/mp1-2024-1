@@ -17,6 +17,7 @@ public:
 		DeltaTimeLimit = .1f;
 
 		GameWorld = new CSnakeWorld(this, 20, 20, TargetScore);
+
 		GameRender = new CRenderOpenGL(this,
 			{
 				{"Square",		TSpriteGL("Resources/ChibiZar.png",		100, 100)},
@@ -75,7 +76,7 @@ int main()
 		string sInt;
 		cin >> sInt;
 
-		Inputing = !(IsInt(sInt) && stoi(sInt) > 0 && stoi(sInt) < 99);
+		Inputing = !(IsInt(sInt) && stoi(sInt) > 0 && stoi(sInt) < 100);
 
 		if (Inputing)
 			cout << endl << "Not a valid score!" << endl;

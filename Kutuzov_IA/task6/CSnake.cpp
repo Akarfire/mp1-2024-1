@@ -54,14 +54,16 @@ bool CSnakeHead::Created()
 
 void CSnakeHead::Update(float DeltaTime)
 {
+	CObject::Update(DeltaTime);
+
 	Move(CurrentDirection * DeltaTime * Speed);
 	DistanceSinceLastCheck += DeltaTime * Speed;
 
 	if (CurrentDirection.X != 0.f)
-		SetPosition(TVector2D(GetPosition().X, TILE_SIZE * (int(GetPosition().Y) / TILE_SIZE)));
+		SetPosition(TVector2D(GetPosition().X, TILE_SIZE * (round(GetPosition().Y / TILE_SIZE))));
 
 	if (CurrentDirection.Y != 0.f)
-		SetPosition(TVector2D(TILE_SIZE * (int(GetPosition().X) / TILE_SIZE), GetPosition().Y));
+		SetPosition(TVector2D(TILE_SIZE * (round(GetPosition().X / TILE_SIZE)), GetPosition().Y));
 
 	// Tiles
 
@@ -196,11 +198,13 @@ void CSnakeBody::SpawnBody(CSnakeHead* InSnakeHead, int InIndex)
 
 void CSnakeBody::Update(float DeltaTime)
 {
+	CObject::Update(DeltaTime);
+
 	if (Direction.X != 0.f)
-		SetPosition(TVector2D(GetPosition().X, TILE_SIZE * (int(GetPosition().Y) / TILE_SIZE)));
+		SetPosition(TVector2D(GetPosition().X, TILE_SIZE * (round(GetPosition().Y / TILE_SIZE))));
 
 	if (Direction.Y != 0.f)
-		SetPosition(TVector2D(TILE_SIZE * (int(GetPosition().X) / TILE_SIZE), GetPosition().Y));
+		SetPosition(TVector2D(TILE_SIZE * (round(GetPosition().X / TILE_SIZE)), GetPosition().Y));
 
 }
 

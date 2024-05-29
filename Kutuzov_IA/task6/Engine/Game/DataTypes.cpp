@@ -299,7 +299,7 @@ float TIntVector2D::DotProduct(TIntVector2D& InVector) const
 }
 
 // Sprite
-TSprite::TSprite(std::string InSpriteID, TVector2D InRelPosition, float InScale): SpriteID(InSpriteID), RelPosition(InRelPosition), Scale(InScale) {}
+TSprite::TSprite(std::string InSpriteID, TVector2D InRelPosition, float InScale, TVector2D InTargetSize): SpriteID(InSpriteID), RelPosition(InRelPosition), Scale(InScale), TargetSize(InTargetSize) {}
 
 
 // Camera

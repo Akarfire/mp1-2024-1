@@ -24,7 +24,7 @@ protected:
 
 protected:
 	virtual void OnCollided(CCollider* OtherCollider, CCollider* Collider);
-
+	virtual void Update(float DeltaTime) override;
 
 public:
 	CObject(CWorld* World, std::string Name = "Object");

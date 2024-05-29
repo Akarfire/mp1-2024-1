@@ -17,12 +17,13 @@ void CSnakeWorld::InitWorld()
 {
 	srand(time(0));
 
-	TIntVector2D SnakeLocation;
+	TIntVector2D SnakeLocation = TVector2D();
 
-	do
-	{
-		SnakeLocation = TIntVector2D((rand() % SizeX) - SizeX / 2, (rand() % SizeY) - SizeY / 2);
-	} while (!(SnakeLocation.X > -1 * (SizeX / 2) + 4 && SnakeLocation.X < (SizeX / 2) - 6));
+	if (SizeX > 10 && SizeY > 0)
+		do
+		{
+			SnakeLocation = TIntVector2D((rand() % SizeX) - SizeX / 2, (rand() % SizeY) - SizeY / 2);
+		} while (!(SnakeLocation.X > -1 * (SizeX / 2) + 4 && SnakeLocation.X < (SizeX / 2) - 6));
 
 	SnakeHead = Spawn<CSnakeHead>("Player");
 	SnakeHead->SetPosition(TVector2D(SnakeLocation * TILE_SIZE));
@@ -94,7 +95,8 @@ void CSnakeWorld::ResetWorld()
 {
 	Walls.clear();
 
-	for (auto Entity : Entities)
+	auto Copy_Entities = Entities;
+	for (auto Entity : Copy_Entities)
 		if (CObject* Object = dynamic_cast<CObject*>(Entity.second))
 			if (Object != WorldScriptHandler)
 				Destroy(Object);
@@ -165,6 +167,11 @@ float CSnakeWorld::Top()
 float CSnakeWorld::Bottom()
 {
 	return -1 * (SizeY / 2) * TILE_SIZE;
+}
+
+CSnakeHead* CSnakeWorld::GetSnake()
+{
+	return SnakeHead;
 }
 
 

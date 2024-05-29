@@ -86,10 +86,10 @@ struct TSprite
 {
 	std::string SpriteID;
 	TVector2D RelPosition;
-	TVector2D TargetSize = TVector2D(1.f, 1.f);
+	TVector2D TargetSize;
 	float Scale;
 
-	TSprite(std::string InSpriteID, TVector2D InRelPosition = TVector2D(), float InScale = 1.f);
+	TSprite(std::string InSpriteID, TVector2D InRelPosition = TVector2D(), float InScale = 1.f, TVector2D InTargetSize = TVector2D(1.f, 1.f));
 };
 
 struct TCamera

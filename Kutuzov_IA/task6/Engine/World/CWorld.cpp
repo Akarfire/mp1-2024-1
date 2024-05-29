@@ -26,8 +26,8 @@ CWorld::CWorld(CGame* InGame)
 
 CWorld::~CWorld() 
 {
- for (auto Entity : Entities)
-  delete Entity.second;
+	for (auto Entity : Entities)
+		delete Entity.second;
 }
 
 // Initializes the world
@@ -113,14 +113,7 @@ void CWorld::HandleDestructionList()
 	{
 		CEntity* Entity = DestructionList[i];
 		if (Entity)
-		{
-			CObject* ObjectCast = dynamic_cast<CObject*>(Entity);
-			if (ObjectCast)
-				CallDestroy(ObjectCast);
-
-			else
-				CallDestroy(Entity);
-		}
+			delete Entity;
 	}
 
 	DestructionList.clear();
@@ -138,7 +131,6 @@ bool CWorld::CallDestroy(CEntity* InEntity)
 		return false;
 
 	Entities.erase(EntityID);
-	delete InEntity;
 
 	return true;
 }
@@ -160,6 +152,13 @@ bool CWorld::CallDestroy(CObject* InObject)
 
 void CWorld::Destroy(CEntity* InEntity)
 {
+	CObject* ObjectCast = dynamic_cast<CObject*>(InEntity);
+	if (ObjectCast)
+		CallDestroy(ObjectCast);
+
+	else
+		CallDestroy(InEntity);
+
 	//cout << InEntity->GetEntityWorldID() << endl;
 	DestructionList.push_back(InEntity);
 }

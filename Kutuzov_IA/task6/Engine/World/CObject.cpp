@@ -73,6 +73,12 @@ std::vector<TSprite>& CObject::GetSprites() { return Sprites; }
 // Collision
 void CObject::OnCollided(CCollider* OtherCollider, CCollider* Collider) {}
 
+void CObject::Update(float DeltaTime)
+{
+	for (auto Script : Scripts)
+		Script.second->EntityUpdate(DeltaTime);
+}
+
 
 void CObject::ReceivedCollision(CCollider* OtherCollider, CCollider* Collider)
 {
